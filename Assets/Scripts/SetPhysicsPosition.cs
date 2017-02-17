@@ -12,7 +12,7 @@ public class SetPhysicsPosition : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 	}
 	
-	void Update () {
+	void FixedUpdate () {
         rb.MovePosition(controller.transform.position);
         rb.MoveRotation(controller.transform.rotation);
 	}
