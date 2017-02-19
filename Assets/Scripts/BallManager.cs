@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class BallManager : MonoBehaviour {
 
+    public static BallManager instance;
     public GameObject ballPrefab;
 
-    private GameObject currentBall;
+    [HideInInspector]
+    public GameObject currentBall;
 
-    void Start () {
-		
+    void Awake () {
+        if (instance == null)
+            instance = this;
 	}
-	
-	void Update () {
+
+    void OnDestroy ()
+    {
+        if (instance == this)
+            instance = null;
+    }
+
+    void Update () {
         if (currentBall == null)
             currentBall = Instantiate(ballPrefab, transform.position, transform.rotation) as GameObject;
 	}
